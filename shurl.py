@@ -30,7 +30,7 @@ def index():
     global url_cache
     urls = [] 
     for uid in url_cache:
-        urls.append(url_cache.peek(uid))
+        urls.append((uid, url_cache.peek(uid)))
         if len(urls) == 50: break
     return dict(urls=urls)
         

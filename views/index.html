@@ -141,8 +141,8 @@
     <div id="main">
         Recent URLs:
         <ul>
-            % for url in urls:
-            <li><a href="{{url}}">{{url}}</li>
+            % for uid, url in urls:
+            <li><a href="/{{uid}}">{{url}}</li>
             % end
         </ul>
     </div>
