@@ -25,8 +25,15 @@ def get_next_uid():
     
 @get('/')
 @get('/index.html')
+@view('index.html')
 def index():
-    return 'curl -i http://shurl.im/ -F "url=http://lyxint.com/"'
+    global url_cache
+    urls = [] 
+    for uid in url_cache:
+        urls.append(url_cache.peek(uid))
+        if len(urls) == 50: break
+    return dict(urls=urls)
+        
 
 @post('/')
 def root():
