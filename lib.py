@@ -5,12 +5,8 @@ import hashlib
 
 def writeto(path, data):
     d = os.path.dirname(path)
-    #if not os.path.isdir(d):
-    try:
+    if not os.path.isdir(d):
         os.makedirs(d)
-    except: pass
-    if os.path.exists(path):
-        print path
     fh = open(path, 'w')
     fh.write(data)
     fh.close()
