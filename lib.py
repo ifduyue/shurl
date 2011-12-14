@@ -39,4 +39,14 @@ def get_url_path(uid):
 
 def sha256(s):
     return hashlib.sha256(s).hexdigest()
+    
+def get_next_uid():
+    uid = None
+    with lock(conf.LOCK_FILE):
+        uid = readfrom(conf.UID_FILE)
+        if uid is None: uid = 1
+        uid = int(uid)
+        writeto(conf.UID_FILE, str(uid+1))
+        uid = base62_encode(uid)
+    return uid
 

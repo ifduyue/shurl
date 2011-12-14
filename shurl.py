@@ -12,16 +12,6 @@ import urlparse
 from filelock import FileLock as lock
 url_cache = pylru.lrucache(conf.CACHE_SIZE)
 hash_cache = pylru.lrucache(conf.CACHE_SIZE)
-
-def get_next_uid():
-    uid = None
-    with lock(conf.LOCK_FILE):
-        uid = readfrom(conf.UID_FILE)
-        if uid is None: uid = 1
-        uid = int(uid)
-        writeto(conf.UID_FILE, str(uid+1))
-        uid = base62_encode(uid)
-    return uid
     
 @get('/')
 @get('/index.html')
@@ -42,9 +32,14 @@ def root():
 
     # is valid url ?
     scheme, netloc, path, query, fragment = urlparse.urlsplit(url)
-    if len(url) <= 4 or scheme == '' or netloc == '' or  netloc.lower().find(conf.DOMAIN) != -1:
-        #abort(422, 'invalid url')
+    if len(url) <= 4 or \
+       scheme == '' or netloc == '' or \
+       netloc.lower().find(conf.DOMAIN) != -1 or \
+       scheme not in ('http', 'https', 'ftp'):
         raise HTTPResponse("invalid url", status=422)
+        
+    if len(url) > 512:
+        raise HTTPResponse("url too long", status=422)
 
     # check whether this url exists
     hash = sha256(url)
@@ -75,7 +70,7 @@ def url(uid):
     if url:
         url_cache[uid] = url
         raise HTTPResponse("", status=302, header=dict(Location=url))
-    abort(404, 'uid not found')
+    raise HTTPResponse("uid not found", status=404)
 
 if __name__ == '__main__':
     import sys
