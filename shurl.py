@@ -9,7 +9,6 @@ from base62 import *
 import conf
 import pylru
 import urlparse
-from filelock import FileLock as lock
 url_cache = pylru.lrucache(conf.CACHE_SIZE)
 hash_cache = pylru.lrucache(conf.CACHE_SIZE)
     
@@ -24,7 +23,7 @@ def index():
         if len(urls) == 50: break
     url_count = get_url_count()
     return dict(urls=urls, url_count=url_count)
-        
+
 
 @post('/')
 def root():

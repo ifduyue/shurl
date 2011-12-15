@@ -2,6 +2,7 @@
 import conf
 import os
 import hashlib
+from filelock import FileLock as lock
 
 def writeto(path, data):
     d = os.path.dirname(path)
