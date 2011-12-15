@@ -3,6 +3,7 @@ import conf
 import os
 import hashlib
 from filelock import FileLock as lock
+from base62 import *
 
 def writeto(path, data):
     d = os.path.dirname(path)

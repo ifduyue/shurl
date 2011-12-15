@@ -5,7 +5,6 @@ import bottle
 bottle._HTTP_STATUS_LINES[422] = '422 Unprocessable Entity'
 from bottle import *
 from lib import *
-from base62 import *
 import conf
 import pylru
 import urlparse
