@@ -50,3 +50,10 @@ def get_next_uid():
         uid = base62_encode(uid)
     return uid
 
+def get_url_count():
+    try: 
+        uid = readfrom(conf.UID_FILE)
+        return int(uid) - 1
+    except: return 0
+
+

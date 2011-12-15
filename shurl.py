@@ -22,7 +22,8 @@ def index():
     for uid in url_cache:
         urls.append((uid, url_cache.peek(uid)))
         if len(urls) == 50: break
-    return dict(urls=urls)
+    url_count = get_url_count()
+    return dict(urls=urls, url_count=url_count)
         
 
 @post('/')
