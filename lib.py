@@ -7,8 +7,8 @@ import datetime
 
 def get_next_uid():
     collection = get_mongodb_shurl_db().uid
-    ret = collection.find_and_modify({'_id': 0}, update={'$inc': {'uid': 1}}, upsert=True) 
-    return ret.get('uid', 0)
+    ret = collection.find_and_modify({'_id': 0}, update={'$inc': {'uid': 1}}, upsert=True, new=True) 
+    return ret['uid']
 
 def get_url_count():
     collection = get_mongodb_shurl_db().uid

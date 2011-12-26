@@ -7,5 +7,5 @@ echo "$pid"
 kill $pid 2>/dev/null
 
 for i in $@; do
-    python shurl.py $i>> data/err 2>&1 &
+    python shurl.py $i>> shurl.err 2>&1 &
 done
