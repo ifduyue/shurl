@@ -6,9 +6,9 @@ require
 -------
 * bottle::
     
-    ``pip install bottle``
+    pip install bottle
 
 * gevent::
     
-    ``pip install gevent``
+    pip install gevent
 
