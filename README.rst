@@ -12,3 +12,9 @@ require
     
     pip install gevent
 
+usage
+------
+
+::
+
+    curl -i http://shurl.im/ -F "url=your url"
