@@ -142,7 +142,7 @@
         {{url_count}} URLs saved, Recent visited URLs:
         <ul>
             % for uid, url in urls:
-            <li><a href="/{{uid}}">{{url}}</a></li>
+            <li><a href="/{{uid}}" rel="nofollow">{{url}}</a></li>
             % end
         </ul>
     </div>
