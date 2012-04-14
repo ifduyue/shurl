@@ -1,0 +1,6 @@
+CREATE TABLE shurl
+(
+ id SERIAL PRIMARY KEY,
+ url VARCHAR(512) NOT NULL  
+);
+CREATE UNIQUE INDEX idx_url ON shurl (url);
