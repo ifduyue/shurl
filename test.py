@@ -5,7 +5,7 @@ from shurl import get_next_uid
 def sigint():
     import signal
     def sig(n, f):
-        import signal
+        import signal, os
         os.kill(0, signal.SIGTERM)
     signal.signal(signal.SIGINT, sig)
 
