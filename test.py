@@ -14,17 +14,14 @@ def randstr(l=4, h=8):
     chars = string.ascii_letters + string.digits
     result = ''
     length = random.randint(l, h)
-    for i in xrange(length):
-        result += random.choice(chars)
-    return result
+    return ''.join(random.choice(chars) for i in xrange(length))
 
 def run(x=0):
     response = post(
         "http://127.0.0.1:1234/",
-        data = "url=http://lyxint.com/"+randstr(1, 10),
+        data = "url=http://lyxint.com/%d/"%x+randstr(1, 10),
     )
     #print response.status, response.getheader('location')
-    return response
 
 def uid(x=0):
     uid = get_next_uid()
