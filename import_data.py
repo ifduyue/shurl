@@ -1,6 +1,7 @@
 import conf
 from lib import pool
 from base62 import base62_encode
+import os
 
 def readfrom(path):
     try:
@@ -30,11 +31,15 @@ def get_url_path(uid):
     return os.path.join(conf.URL_DIR, split_path(uid))
 
 if __name__ == '__main__':
+    import psycopg2
     count = get_uid_count()
     for i in xrange(1, count+1):
         uid = base62_encode(i)
         path = get_url_path(uid)
         url = readfrom(path)
-        ret = pool.execute("insert into shurl (id, url) values (%s, %s)", (i, url))
-        print ret, i, url
+        try:
+            ret = pool.execute("insert into shurl (id, url) values (%s, %s)", (i, url))
+            print ret, i, uid, url
+        except psycopg2.IntegrityError as e:
+            print e
 
