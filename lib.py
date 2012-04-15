@@ -2,7 +2,7 @@ import conf
 from psycopg2_pool import PostgresConnectionPool
 from base62 import base62_encode
 
-pool = PostgresConnectionPool(conf.psql_db, maxsize=3)
+pool = PostgresConnectionPool(conf.psql_db, maxsize=10)
  
 def get_url_count():
     count = pool.fetchone("select last_value from shurl_id_seq;")
