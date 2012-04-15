@@ -1,6 +1,6 @@
 import os
 
-CACHE_SIZE = 1000
+CACHE_SIZE = 100
 ROOT_DIR = os.path.realpath(os.path.dirname(__file__))
 DATA_DIR = os.path.join(ROOT_DIR, 'data')
 URL_DIR = os.path.join(DATA_DIR, 'url')
