@@ -15,7 +15,7 @@ def viewall():
 
 def delete(uid):
     path = get_url_path(uid)
-    url = readfrom(uid)
+    url = readfrom(path)
     os.remove(path)
     print 'deleted', path, url
 
