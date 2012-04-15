@@ -11,7 +11,7 @@ def view(uid):
 def viewall():
     count = get_url_count()
     for i in xrange(1, count+1):
-        view(base62_encode(i)
+        view(base62_encode(i))
 
 def delete(uid):
     path = get_url_path(uid)
@@ -29,5 +29,8 @@ if __name__ == '__main__':
     
     action = options.action
     action = locals()[action]
-    for i in args:
-        action(i)
+    if args:
+        for i in args:
+            action(i)
+    else:
+        action()
