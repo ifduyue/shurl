@@ -16,8 +16,14 @@ def viewall():
 def delete(uid):
     path = get_url_path(uid)
     url = readfrom(path)
-    os.remove(path)
-    print 'deleted', path, url
+    hash = sha256(url)
+    hpath = get_hash_path(hash)
+    try:
+        os.remove(path)
+        os.remove(hpath)
+        print 'deleted', path, url, hpath, hash
+    except Exception as e :
+        print 'error deleting', uid, e
 
 
 if __name__ == '__main__':
